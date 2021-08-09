@@ -63,30 +63,29 @@ struct Home: View {
             .clipShape(Circle())
             .shadow(radius: 8)
             
-            VStack {
+            VStack(spacing: 30) {
                 ForEach(data) { i in
-                    HStack {
+                    HStack(alignment: .center) {
                         Text(i.name)
                             .frame(width: 100)
                         
                         // fixed width
-                        
                         GeometryReader { geometry in
                             HStack {
                                 Spacer(minLength: 0)
                                 
                                 Rectangle()
                                     .fill(i.color)
-                                    .frame(width: self.getWidth(width: geometry.frame(in: .global).width, value: i.percent) ,height: 10)
+                                    .frame(width: self.getWidth(width: geometry.frame(in: .global).width, value: i.percent) ,height: 20)
                                 
-                                Text(String(format: "\(i.percent)", "%.0f"))
+                                Text(String(format: "\(i.percent)", "%.0f") + "%")
                                     .fontWeight(.bold)
                                     .padding(.leading, 10)
                             }
                         }
                     }
-                    .padding(.top, 18)
                 }
+                .frame(height: 20)
             }
             .padding()
             
@@ -149,9 +148,10 @@ struct Pie: Identifiable {
 }
 
 var data = [
-    Pie(id: 0, percent: 10, name: "ObjcC", color: Color("Color")),
-    Pie(id: 1, percent: 15, name: "Swift", color: Color("Color1")),
-    Pie(id: 2, percent: 20, name: "Java", color: Color("Color2")),
-    Pie(id: 3, percent: 20, name: "Flutter", color: Color("Color3")),
-    Pie(id: 4, percent: 35, name: "SwiftUI", color: Color.green.opacity(0.6))
+    Pie(id: 0, percent: 10, name: "Red", color: Color.red),
+    Pie(id: 1, percent: 20, name: "Orange", color: Color.orange),
+    Pie(id: 2, percent: 25, name: "Yellow", color: Color.yellow),
+    Pie(id: 3, percent: 35, name: "Green", color: Color.green),
+    Pie(id: 4, percent: 5, name: "Blue", color: Color.blue),
+    Pie(id: 5, percent: 5, name: "Purple", color: Color.purple)
 ]
